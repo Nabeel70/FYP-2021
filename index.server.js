@@ -18,27 +18,30 @@ mongoose.connect(
 
     {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true
     }
 ).then(() => {
     console.log('Database is Connected');
 });
 
 
-app.use(express.json());
+app.use(bodyParser());
+app.use('/api', userRoutes);
 
 
-app.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Hello World from Muhammad Nabeel Amin'
-    });
-});
 
-app.post('/data', (req, res, next) => {
-    res.status(200).json({
-        message: req.body
-    });
-});
+// app.get('/', (req, res, next) => {
+//     res.status(200).json({
+//         message: 'Hello World from Muhammad Nabeel Amin'
+//     });
+// });
+
+// app.post('/data', (req, res, next) => {
+//     res.status(200).json({
+//         message: req.body
+//     });
+// });
 
 app.listen(process.env.PORT, () => {
     console.log('server is runing on port', (process.env.PORT));
